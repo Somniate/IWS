@@ -33,7 +33,7 @@ if ($result) {
     <title>Home</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous" />
     <link rel="stylesheet" href="beta.css">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">   <!-- style css here -->
     <style>
 body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
@@ -56,6 +56,23 @@ background-color: #ddd;
 color: black;
 }
 
+.pagination {
+    display: inline-block;
+
+        }
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+        }
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+        }
+
 
     </style>
         <body class="w3-light-grey">
@@ -65,8 +82,8 @@ color: black;
     <!-- header here -->
     <header>
 
-    <header class="w3-container w3-center-left w3-padding-32"> 
-    <h1><b>Daily News</b></h1>
+    <header class="w3-container w3-center w3-padding-32"> 
+    <h1><b>DAILY NEWS</b></h1>
     <p>IWS Final Project of <span class="w3-tag">Trang and Thanh</span></p>
 
     </header>
@@ -102,15 +119,15 @@ color: black;
                     <p>No news</p>
                 <?php else : ?>
                     <?php foreach ($rows as $row) : ?>
-                    <div class ="w3-row-padding w3-third">
-                        <div class=" w3-container w3-panel w3-border w3-border-w3-camo-verydarkgrey w3-round-xxlarge">
+                    
+                        <div>
                             <h2><a href="read_one.php?id=<?php echo $row['id_article']; ?>"><?php echo $row['title_article'] ?></a></h2>
                             <p><?php echo $row['name_category'] ?></p>
                             <p><?php echo $row['date_article'] ?></p>
                             <p>created by <?php echo $row['author_article'] ?></p>
                             <p><?php echo $row['intro_article'] ?></p>
                         </div>
-                    </div>
+                    
                     <?php endforeach; ?>
                 <?php endif; ?>
             </div>
@@ -119,7 +136,11 @@ color: black;
 
     </section>
 
+    <div class="pagination">
+
     <?php
+
+    //For some reason xóa hai dòng $sql với $result đi thì nó không chạy được i dont really understand why though
 
     $sql= "SELECT * FROM articles LEFT JOIN categories ON articles.category_article = categories.id_category ORDER BY articles.date_article DESC";
     $result = $mysqli->query($sql);
@@ -127,11 +148,15 @@ color: black;
     $number_of_result = mysqli_num_rows($result);
     $number_of_pages = ceil($number_of_result/$limit);
 
-      for ($page=1;$page<=$number_of_pages;$page++) {
+    //link to pages
+
+    for ($page=1;$page<=$number_of_pages;$page++) {
         echo '<a href="index.php?page=' . $page . '">' . $page . '</a> ';
       }
       
     ?>
+
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

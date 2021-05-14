@@ -50,7 +50,7 @@ color: black;
     <!-- header here -->
     <header>
 
-    <header class="w3-container w3-center-left w3-padding-32"> 
+    <header class="w3-container w3-center w3-padding-32"> 
     <h1><b>Daily News</b></h1>
     <p>IWS Final Project of <span class="w3-tag">Trang and Thanh</span></p>
 
